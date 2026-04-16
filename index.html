@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bekurat - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 191, 255, 0.1) 0%, transparent 50%);
+            animation: shift 15s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes shift {
+            0%, 100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(30px, 30px);
+            }
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+        }
+
+        .element-1 {
+            width: 300px;
+            height: 300px;
+            background: #00bfff;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .element-2 {
+            width: 200px;
+            height: 200px;
+            background: #ff1493;
+            bottom: 20%;
+            right: 10%;
+            animation-delay: -7s;
+        }
+
+        .element-3 {
+            width: 250px;
+            height: 250px;
+            background: #8a2be2;
+            top: 50%;
+            right: 5%;
+            animation-delay: -14s;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00bfff, #ff1493, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        h1 {
+            font-size: 54px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInDown 1s ease-out 0.2s both;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #a0a0ff;
+            margin-bottom: 40px;
+            font-weight: 300;
+            animation: fadeInDown 1s ease-out 0.4s both;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #c0c0ff;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .cta-button {
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00bfff, #ff1493);
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(0, 191, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(0, 191, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00bfff;
+            border: 2px solid #00bfff;
+            box-shadow: 0 8px 32px rgba(0, 191, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 191, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(0, 191, 255, 0.3);
+        }
+
+        .email-form {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 1s both;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-input {
+            padding: 14px 24px;
+            font-size: 16px;
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            min-width: 300px;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #00bfff;
+            background: rgba(0, 191, 255, 0.1);
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .submit-btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #00bfff, #ff1493);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0, 191, 255, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 191, 255, 0.1);
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00bfff;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 191, 255, 0.3);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 24px rgba(0, 191, 255, 0.3);
+        }
+
+        .counter {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 60px;
+            animation: fadeInUp 1s ease-out 1.4s both;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00bfff, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .counter-label {
+            font-size: 14px;
+            color: #a0a0ff;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+
+            .email-input {
+                min-width: 100%;
+            }
+
+            .counter {
+                gap: 20px;
+            }
+
+            .counter-number {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-element element-1"></div>
+    <div class="floating-element element-2"></div>
+    <div class="floating-element element-3"></div>
+
+    <div class="container">
+        <div class="logo">BEKURAT</div>
+        <h1>Something Amazing is Coming</h1>
+        <p class="subtitle">Be the first to experience the future</p>
+        
+        <p class="description">
+            We're working on something revolutionary that will transform the way you interact with technology. 
+            Stay tuned and get notified when we launch.
+        </p>
+
+        <form class="email-form" onsubmit="handleSubmit(event)">
+            <input type="email" class="email-input" placeholder="Enter your email" required>
+            <button type="submit" class="submit-btn">Notify Me</button>
+        </form>
+
+        <div class="cta-container">
+            <a href="#" class="cta-button btn-primary">Explore</a>
+            <a href="#" class="cta-button btn-secondary">Learn More</a>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">ⓘ</a>
+        </div>
+
+        <div class="counter">
+            <div class="counter-item">
+                <div class="counter-number">15k+</div>
+                <div class="counter-label">Waitlist</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">50+</div>
+                <div class="counter-label">Countries</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">99%</div>
+                <div class="counter-label">Satisfied</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.email-input');
+            alert(`Thank you! We'll notify ${email.value} when Bekurat launches.`);
+            email.value = '';
+        }
+    </script>
+</body>
+</html>
