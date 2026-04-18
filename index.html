@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="am">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>በኩራት | BEKURAT</title>
     <style>
         :root {
-            --bg: #101010;
-            --text: #1A1A1A;
-            --accent: #D4AF37;
+            /* The 2030 Palette */
+            --deep-green: #023020;
+            --near-black: #01150e;
+            --gold-leaf: #C5A059;
+            --liquid-gold: linear-gradient(135deg, #c5a059 0%, #f9e3b4 50%, #c5a059 100%);
+            --text-main: rgba(255, 255, 255, 0.95);
+            --text-dim: rgba(255, 255, 255, 0.5);
         }
 
         * {
@@ -18,102 +23,183 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--near-black);
+            /* Atmospheric Gradient & Grain Texture */
+            background:
+                radial-gradient(circle at center, var(--deep-green) 0%, var(--near-black) 100%),
+                url('https://www.transparenttextures.com/patterns/stardust.png');
+            /* Subtle film grain */
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
 
         .container {
+            max-width: 800px;
+            padding: 40px;
             text-align: center;
-            opacity: 90;
-            animation: fadeIn 2.5s ease-out forwards;
+            animation: emerge 3s ease-out;
         }
 
-        .logo-wrapper {
-            margin-bottom: 40px;
+        /* Logo Section */
+        .logo-group {
+            margin-bottom: 80px;
+            position: relative;
         }
 
         .ethiopic-logo {
-            font-size: 1.5rem;
-            letter-spacing: 0.5rem;
-            margin-bottom: 10px;
-            font-weight: 300;
+            font-size: 1.1rem;
+            letter-spacing: 1.2rem;
+            color: var(--gold-leaf);
             display: block;
-            color: var(--accent);
+            margin-bottom: 15px;
+            opacity: 0.8;
+            font-weight: 300;
         }
 
         .latin-logo {
-            font-size: 2.5rem;
-            letter-spacing: 1.2rem;
-            font-weight: 200;
-            margin-left: 1.2rem; /* Offset for centering letter spacing */
-            color: #9A9A9A;
-
+            font-size: 3.5rem;
+            letter-spacing: 2rem;
+            font-weight: 100;
+            text-transform: uppercase;
+            margin-left: 2rem;
+            /* Balancing the tracking */
+            background: var(--liquid-gold);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .poetic-message {
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 200;
-            line-height: 1.4;
-            letter-spacing: 0.05rem;
-            font-size: 1.0rem;
-            color: #FDFCFD;
-        }
-
-        .visual-arc {
+        /* The Vertical Monolith */
+        .separator {
             width: 1px;
             height: 100px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            margin: 40px auto;
+            background: linear-gradient(to bottom, transparent, var(--gold-leaf), transparent);
+            margin: 0 auto 60px;
+            opacity: 0.4;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* The Manifesto Content */
+        .manifesto {
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .latin-logo { font-size: 1.8rem; letter-spacing: 0.8rem; }
-            .poetic-message { padding: 0 20px; font-size: 1rem; }
+        .primary-statement {
+            font-size: 1.2rem;
+            letter-spacing: 0.1rem;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .body-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            font-weight: 200;
+        }
+
+        .body-text strong {
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        /* Amharic Refinement */
+        .amharic-section {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+            padding-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-claim {
+            font-size: 0.75rem;
+            letter-spacing: 0.4rem;
+            text-transform: uppercase;
+            color: var(--gold-leaf);
+            opacity: 0.6;
+        }
+
+        /* Entrance Animation */
+        @keyframes emerge {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+                filter: blur(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .footer-copyright {
+            font-size: 0.65rem;
+            letter-spacing: 0.2rem;
+            color: var(--text-dim);
+            margin-top: 80px;
+            opacity: 0.4;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .latin-logo {
+                font-size: 2rem;
+                letter-spacing: 1rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .separator {
+                height: 60px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <div class="logo-wrapper">
+        <header class="logo-group">
             <span class="ethiopic-logo">በኩራት</span>
-            <h1 class="latin-logo">BEKURAT</h1>
-        </div>
+            <h1 class="latin-logo">Bekurat</h1>
+        </header>
 
-        <div class="visual-arc"></div>
+        <div class="separator"></div>
 
-        <p class="poetic-message">
-	    The pride of Ethiopian business. <br><br>
+        <article class="manifesto">
+            <p class="primary-statement">The pride of Ethiopian business.</p>
 
-            Bekurat exists for one reason: to reclaim your time, your energy, and your focus. <br><br>	    Our goal is a sovereign infrastructure that allows you to do what you actually came to do. <br><br>
+            <p class="body-text">
+                <strong>Bekurat</strong> exists for one reason: to reclaim your focus and peace. <br>
+                Work with pride. Sovereign, absolute, and worry-free.
+            </p>
 
+            <div class="amharic-section">
+                ለኢትዮጵያ ንግድ አዲስ ንጋት። <br>
+                <strong>በኩራት</strong> ጊዜዎን፣ ሰላምዎን እና ትኩረትዎን ያስመልስልዎታል። <br>
+                ያለስጋት፣ በሙሉ በራስ መተማመን ስራዎን ያከናውኑ።
+            </div>
 
-            Work with unshakeable pride. <br><br>
-            Worry-free. Absolute. Sovereign. <br><br>
-
-            Now is the time for the Ethiopian enterprise to scale in peace. <br><br>
-
-            <strong>The future is precisely yours.</strong> <br><br><br><br>
-			Bekurat © 2026 
-
-
-        </p>
-
+            <p class="footer-claim">The future is precisely yours.</p>
+            <footer class="footer-copyright">Bekurat &copy; 2026</footer>
+        </article>
     </div>
 
 </body>
+
 </html>
